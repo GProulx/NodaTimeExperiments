@@ -85,14 +85,14 @@ namespace NodaTimeExperiments.Tests
             // ACT
             LocalDateTime now = clock.GetCurrentLocalDateTime();
 
-            var x = qcZone.AtStrictly(now);
+            ZonedDateTime x = qcZone.AtStrictly(now);
 
             // ASSERT
             x.Zone.Id.Should().Be(localZoneId);
 
             // What I need to save into the database:
-            Console.WriteLine(x.Zone.Id);
             Console.WriteLine(x.ToInstant());
+            Console.WriteLine(x.Zone.Id);
             // BASED ON : https://groups.google.com/forum/#!topic/noda-time/cfzbyYXfRyI
         }
 
