@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodaTimeExperiments", "Noda
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodaTimeExperiments.Tests", "NodaTimeExperiments.Tests\NodaTimeExperiments.Tests.csproj", "{74C10E9A-45E6-42F5-A4F9-5FAB58E1CE9D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Parameters", "Parameters", "{A497111D-2A4A-4ED9-8F74-169FACE6F24E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
