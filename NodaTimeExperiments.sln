@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodaTimeExperiments", "NodaTimeExperiments\NodaTimeExperiments.csproj", "{A2199524-8995-49A1-AF41-27A308F2E7FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodaTimeExperiments.Tests", "NodaTimeExperiments.Tests\NodaTimeExperiments.Tests.csproj", "{74C10E9A-45E6-42F5-A4F9-5FAB58E1CE9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2199524-8995-49A1-AF41-27A308F2E7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2199524-8995-49A1-AF41-27A308F2E7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2199524-8995-49A1-AF41-27A308F2E7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2199524-8995-49A1-AF41-27A308F2E7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C10E9A-45E6-42F5-A4F9-5FAB58E1CE9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C10E9A-45E6-42F5-A4F9-5FAB58E1CE9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C10E9A-45E6-42F5-A4F9-5FAB58E1CE9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C10E9A-45E6-42F5-A4F9-5FAB58E1CE9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D443F23F-0659-4701-84C1-20B3F9A9CB5B}
+	EndGlobalSection
+EndGlobal
