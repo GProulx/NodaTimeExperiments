@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -94,6 +95,85 @@ namespace NodaTimeExperiments.Tests
             Console.WriteLine(x.ToInstant());
             Console.WriteLine(x.Zone.Id);
             // BASED ON : https://groups.google.com/forum/#!topic/noda-time/cfzbyYXfRyI
+        }
+
+        [TestMethod]
+        public void HowToSaveDateTimeToDB_UsingSomethingOtherThan_AtStrictly()
+        {
+            // ARRANGE
+            const string localZoneId = "America/Toronto";
+            var qcZone = DateTimeZoneProviders.Tzdb[localZoneId];
+
+            ZonedClock clock = SystemClock.Instance.InZone(qcZone);
+
+            // ACT
+            LocalDateTime now = clock.GetCurrentLocalDateTime();
+
+            ZonedDateTime x = qcZone.MapLocal(now).Last();
+
+            // ASSERT
+            x.Zone.Id.Should().Be(localZoneId);
+
+            // What I need to save into the database:
+            Console.WriteLine(x.ToInstant());
+            Console.WriteLine(x.Zone.Id);
+            // BASED ON : https://groups.google.com/forum/#!topic/noda-time/cfzbyYXfRyI
+        }
+
+
+        [TestMethod]
+        public void MapLocal_DuringTheReturnToEST_ShouldReturnTwoResults()
+        {
+            // ARRANGE
+            const string localZoneId = "America/Toronto";
+            var qcZone = DateTimeZoneProviders.Tzdb[localZoneId];
+
+            ZonedClock clock = SystemClock.Instance.InZone(qcZone);
+            var backToEST = new LocalDateTime(2017, 11, 5, 1, 30, 00);
+
+            // ACT
+            var map = qcZone.MapLocal(backToEST);
+
+            // ASSERT
+            map.Count.Should().Be(2);
+            map.First().IsDaylightSavingTime().Should().BeTrue();
+            map.Last().IsDaylightSavingTime().Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void MAtLeniently_DuringTheReturnToEST_ShouldReturnTwoResults()
+        {
+            // ARRANGE
+            const string localZoneId = "America/Toronto";
+            var qcZone = DateTimeZoneProviders.Tzdb[localZoneId];
+
+            ZonedClock clock = SystemClock.Instance.InZone(qcZone);
+            var backToEST = new LocalDateTime(2017, 11, 5, 1, 30, 00);
+
+            // ACT
+            var zonedDateTime = qcZone.AtLeniently(backToEST);
+
+            // ASSERT
+            zonedDateTime.IsDaylightSavingTime().Should().BeTrue("Because it return the first of the two possibles datetime");
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(AmbiguousTimeException))]
+        public void AtStrictly_DuringTheReturnToEST_ShouldThrowAmbigousException()
+        {
+            // ARRANGE
+            const string localZoneId = "America/Toronto";
+            var qcZone = DateTimeZoneProviders.Tzdb[localZoneId];
+
+            ZonedClock clock = SystemClock.Instance.InZone(qcZone);
+            var backToEST = new LocalDateTime(2017, 11, 5, 1, 30, 00);
+
+            // ACT
+            var zoneDateTime = qcZone.AtStrictly(backToEST);
+
+            // ASSERT
+            // [ExpectedException(typeof(AmbiguousTimeException))]
         }
 
 
